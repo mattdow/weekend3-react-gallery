@@ -14,7 +14,9 @@ function GalleryItem ({item}, {getGalleryItems}) {
     return (
 
         <div className="gallery-item">
-            <div id="picOrDesc">
+            {/* create a div to store either the pic or description */}
+            <div className="picOrDesc">
+                {/* Conditional rendering for either pic or description */}
                 {showPic ?
                 (<img src={item.path} onClick={togglePic} />)
                 :<p onClick={togglePic}>{item.description}</p>}
