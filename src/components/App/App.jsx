@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import './App.css';
 import axios from "axios";
+import GalleryList from '../GalleryList/GalleryList'
 
 function App() {
   // Define and initialize our array of images, and the method we use to set their state.
@@ -31,7 +32,7 @@ function App() {
         <header className="App-header">
           <h1 className="App-title">Gallery of My Life</h1>
         </header>
-        <p>Gallery goes here</p>
+        <GalleryList galleryItems={galleryItems} getGalleryItems={getGalleryItems} />
         <img src="images/goat_small.jpg"/>
       </div>
     );
