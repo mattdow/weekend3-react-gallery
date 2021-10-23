@@ -9,6 +9,7 @@ function App() {
 
   // define a function to GET the gallery items from the route /gallery
   const getGalleryItems = () => {
+    console.log('In getGalleryItems');
     axios
       .get('/gallery')
       .then((response) => {

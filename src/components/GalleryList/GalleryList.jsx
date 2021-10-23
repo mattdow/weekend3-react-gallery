@@ -1,6 +1,6 @@
 import GalleryItem from '../GalleryItem/GalleryItem';
 
-function GalleryList ({galleryItems}, {getGalleryItems}) {
+function GalleryList ({galleryItems, getGalleryItems}) {
     console.log('In GalleryList');
 
     // console.log(galleryItems[0].path);
