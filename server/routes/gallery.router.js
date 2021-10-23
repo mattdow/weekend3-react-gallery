@@ -63,5 +63,25 @@ router.post('/', (req, res) => {
         });
 }); // end POST route
 
+// DELETE route on button click for delete, using ID param
+router.delete('/:id', (req, res) => {
+    const idToDelete = req.params.id;
+    let values = [idToDelete];
+    const queryText = `
+        DELETE FROM galleryitems
+        WHERE id = $1
+        ;`;
+    // make the query call to the pool using the array of the ID as sanitized
+    // parameter
+    pool.query(queryText, values)
+        .then((result) => {
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log('Error deleting gallery item', error);
+            res.sendStatus(500);            
+        }); // end of pool DB query
+}); // end of DELETE route
+
 
 module.exports = router;
