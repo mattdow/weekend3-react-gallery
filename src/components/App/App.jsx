@@ -1,8 +1,9 @@
 import React, { useEffect, useState} from 'react';
 import './App.css';
-import axios from "axios";
-import GalleryList from '../GalleryList/GalleryList'
-import GalleryForm from '../GalleryForm/GalleryForm'
+import axios from 'axios';
+import { Typography } from '@material-ui/core';
+import GalleryList from '../GalleryList/GalleryList';
+import GalleryForm from '../GalleryForm/GalleryForm';
 
 function App() {
   // Define and initialize our array of images, and the method we use to set their state.
@@ -44,7 +45,8 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Gallery of My Life</h1>
+          <Typography variant="h1" className="App-title">Gallery of My Life
+          </Typography>
         </header>
         <GalleryForm addItem={addItem} />
         <GalleryList galleryItems={galleryItems} getGalleryItems={getGalleryItems} />
