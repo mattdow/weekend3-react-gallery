@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const galleryItems = require('../modules/gallery.data');
+// const galleryItems = require('../modules/gallery.data');
+const pool = require('../modules/pool');
 
 // DO NOT MODIFY THIS FILE FOR BASE MODE
 
@@ -19,9 +20,17 @@ router.put('/like/:id', (req, res) => {
     res.sendStatus(200);
 }); // END PUT Route
 
-// GET Route
+// GET Route, revised for database access
 router.get('/', (req, res) => {
-    res.send(galleryItems);
+    let queryText = `SELECT * FROM "galleryitems"
+                    ORDER BY "likes";`;
+    pool.query(queryText).then(result => {
+        res.send(result.rows);
+    })
+    .catch(error => {
+        console.log('error getting gallery from server and db', error);
+        res.sendStatus(500);        
+    }); // end catch statement                   
 }); // END GET Route
 
 module.exports = router;
