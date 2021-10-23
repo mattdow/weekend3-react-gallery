@@ -42,7 +42,7 @@ function GalleryItem({item, getGalleryItems}) {
                 {/* Conditional rendering for either pic or description */}
                 {showPic ?
                     (<img src={item.path} onClick={togglePic} />)
-                    :(<p onClick={togglePic}>{item.description}</p>)
+                    :(<p className="description" onClick={togglePic}>{item.description}</p>)
                 }
             </div>
             
