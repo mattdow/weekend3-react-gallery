@@ -9,15 +9,26 @@ const pool = require('../modules/pool');
 router.put('/like/:id', (req, res) => {
     console.log(req.params);
     const galleryId = req.params.id;
-    
-    for(const galleryItem of galleryItems) {
-        if(galleryItem.id == galleryId) { 
-            console.log('ID found in PUT route', galleryId);
+    let queryText = `UPDATE "galleryitems"
+                    SET likes = likes+1
+                    WHERE id = $1;`;
+    pool.query(queryText, [galleryId])
+        .then((result) => {
+            console.log('PUT add like result is', result);
+            res.sendStatus(201);            
+        })
+        .catch((err) => {
+            console.log('Error making PUT edit to likes', err);
+            res.sendStatus(500);            
+        });
+    // deprecated code for hardcoded array
+    // for(const galleryItem of galleryItems) {
+    //     if(galleryItem.id == galleryId) { 
+    //         console.log('ID found in PUT route', galleryId);
             
-            galleryItem.likes += 1;
-        }
-    }
-    res.sendStatus(200);
+    //         galleryItem.likes += 1;
+    //     }
+    // }
 }); // END PUT Route
 
 // GET Route, revised for database access
