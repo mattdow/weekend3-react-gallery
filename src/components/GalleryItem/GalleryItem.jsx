@@ -54,7 +54,8 @@ function GalleryItem({item, getGalleryItems}) {
             console.log('DELETE error', error);
         }); // end of axios delete route
     }; // end of deletePic function
-    // set out rendering code for each photo item
+
+    // JSX rendering code for each photo item
     return (
 
         <div className="gallery-item">
@@ -66,13 +67,14 @@ function GalleryItem({item, getGalleryItems}) {
                     :(<p className="description" onClick={togglePic}>{item.description}</p>)
                 }
             </div>
-            
+            {/* Creating a button to like the image */}
             <button className="btn like-btn" onClick={likePic}>love it!</button>
                 {/* Conditional rendering for like message */}
                 {item.likes !== 0 ?
                     (<p>{item.likes} people love this!</p>)
                     :(<p>No people love this :(</p>)
                 }
+            {/* Creating a button to delete the given image */}
             <button className="btn delete-btn" onClick={deletePic}>Delete Image</button>
         </div>
 
