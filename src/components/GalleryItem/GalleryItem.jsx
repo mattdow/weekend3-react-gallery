@@ -20,7 +20,7 @@ function GalleryItem({item, getGalleryItems}) {
        axios({
            method: 'PUT',
            // call the parameter to match the url in the gallery router
-           url: `/gallery/like/:${idToAddLike}`
+           url: `/gallery/like/${idToAddLike}`
        })
        .then((response) => {
            console.log('PUT add like response is', response);
