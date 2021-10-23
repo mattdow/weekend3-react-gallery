@@ -4,8 +4,6 @@
     margin-right: 20px;
     margin-top: 20px;
     display: inline-block;
-    border: 2px solid black;
-    border-radius: 10%; 
     justify-content: center;
   }
 
@@ -13,8 +11,15 @@
       height: 150px;
       width: 150px;
       margin: 0 auto;
+      vertical-align: middle;
   }
 
   .description {
       margin: 0;
   }
+
+  .like-btn {
+      margin-top: 20px;
+  }
+
+  

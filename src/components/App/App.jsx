@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import './App.css';
 import axios from "axios";
 import GalleryList from '../GalleryList/GalleryList'
+import GalleryForm from '../GalleryForm/GalleryForm'
 
 function App() {
   // Define and initialize our array of images, and the method we use to set their state.
@@ -20,8 +21,20 @@ function App() {
       }).catch((err) => {
         console.log('Error getting gallery', err);
       })
-
   }
+  // define a function to POST new gallery items
+  const addItem = (newGalleryObject) => {
+    axios
+      .post('/gallery', newGalleryObject)
+      .then((response) => {
+        console.log('New gallery object', newGalleryObject);
+        // call the GET function to reload and re-render
+        getGalleryItems();
+      })
+      .catch((err) => {
+        console.log('Error in POST method', err);
+      });
+  };
 
   // call useEffect to intialize the page and grab the initial array of photos from the server
   useEffect(() => {
@@ -33,6 +46,7 @@ function App() {
         <header className="App-header">
           <h1 className="App-title">Gallery of My Life</h1>
         </header>
+        <GalleryForm addItem={addItem} />
         <GalleryList galleryItems={galleryItems} getGalleryItems={getGalleryItems} />
       </div>
     );

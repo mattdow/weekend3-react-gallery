@@ -39,14 +39,14 @@ function GalleryItem({item, getGalleryItems}) {
         <div className="gallery-item">
             {/* create a div to store either the pic or description */}
             <div className="picOrDesc">
-                {/* Conditional rendering for either pic or description */}
+                {/* Conditional rendering for either pic or description. I'm setting the pic size to 150X150 to eliminate display issues. */}
                 {showPic ?
-                    (<img src={item.path} onClick={togglePic} />)
+                    (<img className="gallery-pic" src={item.path} onClick={togglePic} width="150" height="150"/>)
                     :(<p className="description" onClick={togglePic}>{item.description}</p>)
                 }
             </div>
             
-            <button className="btn" onClick={likePic}>love it!</button>
+            <button className="btn like-btn" onClick={likePic}>love it!</button>
                 {/* Conditional rendering for like message */}
                 {item.likes !== 0 ?
                     (<p>{item.likes} people love this!</p>)

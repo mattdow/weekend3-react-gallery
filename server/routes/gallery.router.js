@@ -34,7 +34,7 @@ router.put('/like/:id', (req, res) => {
 // GET Route, revised for database access
 router.get('/', (req, res) => {
     let queryText = `SELECT * FROM "galleryitems"
-                    ORDER BY "likes";`;
+                    ORDER BY "likes" DESC;`;
     pool.query(queryText).then(result => {
         res.send(result.rows);
     })
@@ -43,5 +43,25 @@ router.get('/', (req, res) => {
         res.sendStatus(500);        
     }); // end catch statement                   
 }); // END GET Route
+
+// POST route for the user form
+router.post('/', (req, res) => {
+    const newItem = [req.body.path, req.body.description];
+    console.log('In POST route for item', newItem);
+    // defining query text to insert into the DB table
+    const queryText = `INSERT INTO galleryitems 
+                        (path, description, likes)
+                        VALUES ($1, $2, 0)`
+    // making the request to the pool
+    pool.query(queryText, newItem)
+        .then((result) => {
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(`Error making DB post ${queryText}`);
+            res.sendStatus(500);
+        });
+}); // end POST route
+
 
 module.exports = router;
