@@ -25,7 +25,6 @@ function GalleryForm({ addItem }) {
         <>
           <h2>Add an Image to the Gallery</h2>
           <form onSubmit={handleSubmit}>
-                <label for='URL of image'>New image (provide URL)</label>
                 <input
                     className='text-input'
                     type='text'

@@ -33,6 +33,27 @@ function GalleryItem({item, getGalleryItems}) {
        });
     };
 
+    // define a function to make a DELETE request on the particular 
+    // image clicked
+
+    const deletePic = () => {
+        // initialize and define the ID to delete
+        let idToDelete = item.id;
+        console.log('Clicked delete for', item.description);
+        axios({
+            method: 'DELETE',
+            // call the route to match the server side route
+            url: `/gallery/${idToDelete}`,
+        })
+        .then((response) => {
+            console.log('DELETE response is', response);
+            // recall GET method to update list and DOM
+            getGalleryItems();
+        })
+        .catch((error) => {
+            console.log('DELETE error', error);
+        }); // end of axios delete route
+    }; // end of deletePic function
     // set out rendering code for each photo item
     return (
 
@@ -52,6 +73,7 @@ function GalleryItem({item, getGalleryItems}) {
                     (<p>{item.likes} people love this!</p>)
                     :(<p>No people love this :(</p>)
                 }
+            <button className="btn delete-btn" onClick={deletePic}>Delete Image</button>
         </div>
 
     )
