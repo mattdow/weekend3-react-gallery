@@ -12,4 +12,5 @@
   .picOrDesc {
       height: 150px;
       width: 150px;
+      margin: 0 auto;
   }
