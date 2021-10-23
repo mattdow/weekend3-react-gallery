@@ -1,6 +1,15 @@
 import './GalleryItem.css'
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+// Importing various MaterialUI components
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+
 
 function GalleryItem({item, getGalleryItems}) {
     // define a variable and setter to determine if the pic or description should show
@@ -57,27 +66,38 @@ function GalleryItem({item, getGalleryItems}) {
 
     // JSX rendering code for each photo item
     return (
-
-        <div className="gallery-item">
-            {/* create a div to store either the pic or description */}
-            <div className="picOrDesc">
-                {/* Conditional rendering for either pic or description. I'm setting the pic size to 150X150 to eliminate display issues. */}
-                {showPic ?
-                    (<img className="gallery-pic" src={item.path} onClick={togglePic} width="150" height="150"/>)
-                    :(<p className="description" onClick={togglePic}>{item.description}</p>)
-                }
-            </div>
-            {/* Creating a button to like the image */}
-            <button className="btn like-btn" onClick={likePic}>love it!</button>
-                {/* Conditional rendering for like message */}
-                {item.likes !== 0 ?
-                    (<p>{item.likes} people love this!</p>)
-                    :(<p>No people love this :(</p>)
-                }
-            {/* Creating a button to delete the given image */}
-            <button className="btn delete-btn" onClick={deletePic}>Delete Image</button>
+        <div className="card-gallery">
+         
+        <Card variant="outlined" sx={{ maxWidth: 200 }}>  
+          <CardActionArea>
+            {/* Conditional rendering to show picture or description */}
+            {showPic ? 
+                <CardMedia
+                    component="img"
+                    height="150"
+                    width="150"
+                    image={item.path}
+                    onClick={togglePic}
+                />
+                : <CardContent>
+                    <Typography gutterBottom variant="body2" color="text.secondary" onClick={togglePic}>
+                    {item.description}
+                    </Typography>
+                    </CardContent>
+            }
+          </CardActionArea>
+          
+            <Button size="small" color="primary" onClick={likePic}>Love This!</Button>
+            {/* Conditional rendering for like message */}
+            {item.likes !== 0 ? 
+                      <Typography gutterBottom variant="body2">{item.likes} people love this!</Typography>
+                     :<Typography gutterBottom variant="body2">No people love this :(</Typography>
+            }
+            {/* Button to delete card */}
+            <Button size="small" color="warning" onClick={deletePic}>Delete</Button>
+           
+        </Card>
         </div>
-
     )
 }
 

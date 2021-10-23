@@ -1,3 +1,8 @@
+.card-gallery {
+    display: inline-block;
+    margin: 20px;
+}
+
 .gallery-item {
     height: 250px;
     width: 200px; 
@@ -21,5 +26,7 @@
   .like-btn {
       margin-top: 20px;
   }
+
+
 
   
