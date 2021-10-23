@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Typography, TextField, Input, Button } from '@material-ui/core';
 import './GalleryForm.css';
 
 function GalleryForm({ addItem }) {
@@ -23,23 +24,35 @@ function GalleryForm({ addItem }) {
     // returning JSX to render the form to the DOM
     return (
         <>
-          <h2>Add an Image to the Gallery</h2>
+          <Typography variant="h4">
+              Add an Image
+          </Typography>
           <form onSubmit={handleSubmit}>
-                <input
-                    className='text-input'
+                <TextField
+                    className="text-input"
+                    required
+                    margin="normal"
+                    fullWidth
                     type='text'
                     placeholder='URL of your image'
                     value={newImage}
                     onChange={(evt) => setNewImage(evt.target.value)}
                 />
-                <input
-                    className='text-input'
+                <TextField
+                    className="text-input"
+                    fullWidth
+                    margin="normal"
                     type='text'
                     placeholder='Description'
                     value={newDescription}
                     onChange={(evt) => setNewDescription(evt.target.value)}
                 />
-                <input type='submit' value='Save Image'/>
+                <Button 
+                    variant="contained" 
+                    color="primary"
+                    type='submit' 
+                    value='Save Image'>Save Image
+                </Button>
           </form>
         </>
       );

@@ -45,7 +45,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <Typography variant="h1" className="App-title">Gallery of My Life
+          <Typography variant="h2" className="App-title">Gallery of My Life
           </Typography>
         </header>
         <GalleryForm addItem={addItem} />
