@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Typography, TextField, Input, Button } from '@material-ui/core';
+import { Typography, TextField, Input, Button } from '@mui/material';
 import './GalleryForm.css';
 
 function GalleryForm({ addItem }) {
